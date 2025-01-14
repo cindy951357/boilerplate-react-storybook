@@ -5,8 +5,8 @@ import "./App.css";
 
 import { useTranslation } from "react-i18next";
 
-import { Calendar as NpmCalendar, momentLocalizer } from "react-big-calendar";
-// import EmbedCalendar from "./libs/react-big-calendar-embed/src/Calendar"; // Note the path
+// with yarn link method, we can directly call the same name as it is defined in its package.json name field
+import { Calendar as EmbedCalendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 
 import Dropdown from "./components/Dropdown.tsx";
@@ -36,7 +36,7 @@ function App() {
   const { t } = useTranslation();
 
   const [events, setEvents] = useState(eventsInit);
-  const [isEmbed, setIsEmbed] = useState(false);
+  const [isEmbed, setIsEmbed] = useState(true);
 
   const handleSelectSlot = (slotInfo) => {
     console.log(typeof slotInfo.start);
@@ -68,8 +68,8 @@ function App() {
         </button>
       </div>
       <div className="h-full">
-        {!isEmbed && (
-          <NpmCalendar
+        {isEmbed && (
+          <EmbedCalendar
             localizer={localizer}
             events={events}
             startAccessor="start"
@@ -81,6 +81,7 @@ function App() {
             className="h-full border border-gray-300 rounded-lg bg-white p-2"
           />
         )}
+        
       </div>
       <div className="flex items-center justify-center">
         <Dropdown arrowAnimation="rotate" />

@@ -7,10 +7,10 @@ $selected-bg-color: #BBB0CD; // 選擇的背景顏色
 $hover-bg-color: lighten($selected-bg-color, 15);    // 滑鼠懸停背景顏色
 $event-bg-color: #f44336;    // 事件的背景顏色
 
-// 基本樣式
-@import 'react-big-calendar/lib/sass/styles';
-// 如果使用拖曳功能，導入拖曳樣式
-@import 'react-big-calendar/lib/addons/dragAndDrop/styles';
+// // 基本樣式
+// @import 'react-big-calendar/lib/sass/styles';
+// // 如果使用拖曳功能，導入拖曳樣式
+// @import 'react-big-calendar/lib/addons/dragAndDrop/styles';
 body {
     background-color: $lightpurple;
 }
