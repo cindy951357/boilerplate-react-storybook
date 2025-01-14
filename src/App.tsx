@@ -14,14 +14,14 @@ interface Event {
   end: Date;
 }
 
-const events: Event[] = [
+const eventsInit: Event[] = [
   {
-    title: "Event 1",
+    title: "Mom's Birthday",
     start: new Date(2025, 0, 14, 10, 0), // January 14, 2025, 10:00 AM
     end: new Date(2025, 0, 14, 12, 0), // January 14, 2025, 12:00 PM
   },
   {
-    title: "Event 2",
+    title: "UX Meeting",
     start: new Date(2025, 0, 15, 14, 0), // January 15, 2025, 2:00 PM
     end: new Date(2025, 0, 15, 15, 30), // January 15, 2025, 3:30 PM
   },
@@ -32,7 +32,7 @@ const localizer = momentLocalizer(moment);
 function App() {
   const { t } = useTranslation();
 
-  const [events, setEvents] = useState(Array<Event>);
+  const [events, setEvents] = useState(eventsInit);
 
   const handleSelectSlot = (slotInfo) => {
     console.log(typeof slotInfo.start);

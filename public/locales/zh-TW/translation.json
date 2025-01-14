@@ -1,6 +1,6 @@
 {
   "language": "語系",  
-  "webtTitle": "歡迎蒞臨 React Boilerplate",
+  "webtTitle": "技術使用討論",
     "description": {
       "part1": "To get started, edit <1>src/App.js</1> and save to reload.",
       "part2": "Switch language between english and Chinese(traditional) using buttons above."
