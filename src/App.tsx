@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import "./App.css";
-import "./output.css";
 import { useTranslation } from "react-i18next";
 
 import { Calendar, momentLocalizer } from "react-big-calendar";
@@ -28,9 +27,7 @@ function App() {
 
   return (
     <div className="app-component bg-primary grid grid-rows-[1fr_6fr_1fr] h-full gap-3">
-      <h1 className="text-rose-300 flex items-center justify-center">
-        {t("webtTitle")}
-      </h1>
+      <h1 className="flex items-center justify-center">{t("webtTitle")}</h1>
       <div className="h-full">
         <Calendar
           localizer={localizer}
@@ -38,6 +35,8 @@ function App() {
           startAccessor="start"
           endAccessor="end"
           selectable
+          step={15} // 每段的時間長度為 15 分鐘
+          timeslots={4}
           className="h-full border border-gray-300 rounded-lg bg-white p-2"
         />
       </div>

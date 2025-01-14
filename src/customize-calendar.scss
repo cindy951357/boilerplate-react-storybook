@@ -1,0 +1,21 @@
+$lightpurple: lighten(#BBB0CD, 15);
+$brick-romantic: #D89486;
+$dark-brick-romantic: darken($brick-romantic, 12);
+
+// 在導入前覆蓋變量
+$selected-bg-color: #BBB0CD; // 選擇的背景顏色
+$hover-bg-color: lighten($selected-bg-color, 15);    // 滑鼠懸停背景顏色
+$event-bg-color: #f44336;    // 事件的背景顏色
+
+// 基本樣式
+@import 'react-big-calendar/lib/sass/styles';
+// 如果使用拖曳功能，導入拖曳樣式
+@import 'react-big-calendar/lib/addons/dragAndDrop/styles';
+body {
+    background-color: $lightpurple;
+}
+
+h1{
+    color: $dark-brick-romantic;
+}
+  

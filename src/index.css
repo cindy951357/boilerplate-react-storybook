@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import './customize-calendar.scss';
+@import './output.css';
 html,
 body,
 #root {
