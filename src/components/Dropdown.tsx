@@ -1,12 +1,18 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
-const LANGUAGES = ["English", "繁體中文", "Français"];
-
+const LANGUAGES = [
+  { label: "English", code: "en" },
+  { label: "繁體中文", code: "zh-TW" },
+  { label: "Français", code: "fr" },
+];
 interface DropdownProps {
   arrowAnimation: "rotate" | "glow";
 }
 
 const Dropdown: React.FC<DropdownProps> = ({ arrowAnimation }) => {
+  const { t, i18n } = useTranslation();
+
   const [isOpen, setIsOpen] = useState(false);
 
   const arrowClasses =
@@ -15,6 +21,11 @@ const Dropdown: React.FC<DropdownProps> = ({ arrowAnimation }) => {
           isOpen ? "rotate-180" : ""
         }`
       : "transition duration-500 hover:brightness-150";
+
+  const handleLanguageChange = (langCode) => {
+    i18n.changeLanguage(langCode);
+    setIsOpen(false);
+  };
 
   return (
     <div
@@ -29,7 +40,7 @@ const Dropdown: React.FC<DropdownProps> = ({ arrowAnimation }) => {
         hover:bg-gray-50 hover:border-none
         focus:outline focus:outline-2 focus:outline-secondary focus:outline-offset-2"
       >
-        <span>Language</span>
+        <span>{t("language")}</span>
         <svg
           className={`ml-2 h-5 w-5 ${arrowClasses}`}
           xmlns="http://www.w3.org/2000/svg"
@@ -56,11 +67,12 @@ const Dropdown: React.FC<DropdownProps> = ({ arrowAnimation }) => {
           <div className="py-1">
             {LANGUAGES.map((lang) => (
               <button
-                key={lang}
+                key={lang.code}
                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100
                 hover:text-gray-900 w-full text-left"
+                onClick={() => handleLanguageChange(lang.code)}
               >
-                {lang}
+                {lang.code}
               </button>
             ))}
           </div>

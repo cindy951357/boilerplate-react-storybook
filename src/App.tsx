@@ -8,7 +8,13 @@ import moment from "moment";
 
 import Dropdown from "./components/Dropdown.tsx";
 
-const events = [
+interface Event {
+  title: string;
+  start: Date;
+  end: Date;
+}
+
+const events: Event[] = [
   {
     title: "Event 1",
     start: new Date(2025, 0, 14, 10, 0), // January 14, 2025, 10:00 AM
@@ -22,8 +28,26 @@ const events = [
 ];
 
 const localizer = momentLocalizer(moment);
+
 function App() {
   const { t } = useTranslation();
+
+  const [events, setEvents] = useState(Array<Event>);
+
+  const handleSelectSlot = (slotInfo) => {
+    console.log(typeof slotInfo.start);
+    const title = window.prompt(t("Enter a title for your event:"));
+    if (title) {
+      setEvents((prevEvents: Array<Event>) => [
+        ...prevEvents,
+        {
+          title,
+          start: slotInfo.start,
+          end: slotInfo.end,
+        },
+      ]);
+    }
+  };
 
   return (
     <div className="app-component bg-primary grid grid-rows-[1fr_6fr_1fr] h-full gap-3">
@@ -37,6 +61,7 @@ function App() {
           selectable
           step={15} // 每段的時間長度為 15 分鐘
           timeslots={4}
+          onSelectSlot={handleSelectSlot}
           className="h-full border border-gray-300 rounded-lg bg-white p-2"
         />
       </div>
