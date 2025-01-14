@@ -1,9 +1,12 @@
 import React from "react";
 import { useState } from "react";
 import "./App.css";
+// import "react-big-calendar/lib/css/react-big-calendar.css";
+
 import { useTranslation } from "react-i18next";
 
-import { Calendar, momentLocalizer } from "react-big-calendar";
+import { Calendar as NpmCalendar, momentLocalizer } from "react-big-calendar";
+// import EmbedCalendar from "./libs/react-big-calendar-embed/src/Calendar"; // Note the path
 import moment from "moment";
 
 import Dropdown from "./components/Dropdown.tsx";
@@ -33,6 +36,7 @@ function App() {
   const { t } = useTranslation();
 
   const [events, setEvents] = useState(eventsInit);
+  const [isEmbed, setIsEmbed] = useState(false);
 
   const handleSelectSlot = (slotInfo) => {
     console.log(typeof slotInfo.start);
@@ -51,19 +55,32 @@ function App() {
 
   return (
     <div className="app-component bg-primary grid grid-rows-[1fr_6fr_1fr] h-full gap-3">
-      <h1 className="flex items-center justify-center">{t("webtTitle")}</h1>
+      <div className="title flex  w-full">
+        <h1 className="flex items-center justify-center">{t("webtTitle")}</h1>
+        <button
+          className="button flex flex-1 toggler rounded w-12 h-6 cursor-pointer
+            items-center"
+          onClick={() => {
+            setIsEmbed(!isEmbed);
+          }}
+        >
+          {isEmbed ? t("Embed") : t("npm")}
+        </button>
+      </div>
       <div className="h-full">
-        <Calendar
-          localizer={localizer}
-          events={events}
-          startAccessor="start"
-          endAccessor="end"
-          selectable
-          step={15} // 每段的時間長度為 15 分鐘
-          timeslots={4}
-          onSelectSlot={handleSelectSlot}
-          className="h-full border border-gray-300 rounded-lg bg-white p-2"
-        />
+        {!isEmbed && (
+          <NpmCalendar
+            localizer={localizer}
+            events={events}
+            startAccessor="start"
+            endAccessor="end"
+            selectable
+            step={15} // 每段的時間長度為 15 分鐘
+            timeslots={4}
+            onSelectSlot={handleSelectSlot}
+            className="h-full border border-gray-300 rounded-lg bg-white p-2"
+          />
+        )}
       </div>
       <div className="flex items-center justify-center">
         <Dropdown arrowAnimation="rotate" />
