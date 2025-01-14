@@ -1,35 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import { useState } from "react";
+import "./App.css";
+import "./output.css";
+import { useTranslation } from "react-i18next";
 
+import { Calendar, momentLocalizer } from "react-big-calendar";
+import moment from "moment";
+
+import Dropdown from "./components/Dropdown.tsx";
+
+const localizer = momentLocalizer(moment);
 function App() {
-  const [count, setCount] = useState(0)
+  const { t } = useTranslation();
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="app-component bg-primary">
+      <h1 className={"text-rose-300"}>{t("webtTitle")}</h1>
+      <Calendar
+        localizer={localizer}
+        events={["aa", "bb"]}
+        startAccessor="start"
+        endAccessor="end"
+        style={{ height: 500 }}
+      />
+      <Dropdown arrowAnimation="rotate" />
+    </div>
+  );
 }
 
-export default App
+export default App;
