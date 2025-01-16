@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import "./App.css";
 // import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -6,7 +6,15 @@ import "./App.css";
 import { useTranslation } from "react-i18next";
 
 // with yarn link method, we can directly call the same name as it is defined in its package.json name field
-import { Calendar as EmbedCalendar, momentLocalizer } from "react-big-calendar";
+import {
+  Calendar as CalendarCustomize,
+  momentLocalizer as momentLocalizerCust,
+} from "react-big-calendar-manual";
+
+import {
+  Calendar as CalendarNormal,
+  momentLocalizer,
+} from "react-big-calendar";
 import moment from "moment";
 
 import Dropdown from "./components/Dropdown.tsx";
@@ -30,13 +38,15 @@ const eventsInit: Event[] = [
   },
 ];
 
-const localizer = momentLocalizer(moment);
+const localizerCust = momentLocalizerCust(moment);
+const localizerNormal = momentLocalizer(moment);
 
 function App() {
   const { t } = useTranslation();
 
   const [events, setEvents] = useState(eventsInit);
-  const [isEmbed, setIsEmbed] = useState(true);
+  const [isEmbed, setIsEmbed] = useState(false);
+  const [localizer, setLocalizer] = useState(localizerNormal);
 
   const handleSelectSlot = (slotInfo) => {
     console.log(typeof slotInfo.start);
@@ -53,6 +63,14 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    if (isEmbed) {
+      setLocalizer(localizerCust);
+    } else {
+      setLocalizer(localizerNormal);
+    }
+  }, [isEmbed]);
+
   return (
     <div className="app-component bg-primary grid grid-rows-[1fr_6fr_1fr] h-full gap-3">
       <div className="title flex  w-full">
@@ -68,8 +86,25 @@ function App() {
         </button>
       </div>
       <div className="h-full">
+        {/** Customize/Embeded version */}
         {isEmbed && (
-          <EmbedCalendar
+          <div className="demo-is-manual h-full">
+            <CalendarCustomize
+              localizer={localizer}
+              events={events}
+              startAccessor="start"
+              endAccessor="end"
+              selectable
+              step={15} // 每段的時間長度為 15 分鐘
+              timeslots={4}
+              onSelectSlot={handleSelectSlot}
+              className="h-full border border-gray-300 rounded-lg bg-white p-2"
+            />
+          </div>
+        )}
+        {/**Normal version */}
+        {!isEmbed && (
+          <CalendarNormal
             localizer={localizer}
             events={events}
             startAccessor="start"
