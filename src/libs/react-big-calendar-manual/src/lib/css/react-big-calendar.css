@@ -10,12 +10,12 @@
   }
   
   /* Toolbar styles */
-  .rbc-toolbar {
+  .rbc-toolbar-customize {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0.5em;
-    background-color: #f7f7f7;
+    background-color: #f5ebe0;
     border-bottom: 1px solid #ddd;
   }
   
@@ -33,9 +33,12 @@
   }
   
   /* Event styles */
+  .rbc-event-customize {
+    background-color: salmon;
+  }
   .rbc-event {
     padding: 0.2em 0.5em;
-    background-color: salmon;
+    background-color: rgb(253, 216, 216);
     color: #fff;
     border-radius: 3px;
     cursor: pointer;
@@ -48,12 +51,12 @@
   
   /* Day styles */
   .rbc-day-bg {
-    background-color: #eaf6ff;
+    background-color: #fffcea;
     border: 1px solid #ddd;
   }
   
   .rbc-day-bg:hover {
-    background-color: #d8edff;
+    background-color: #fff5ba;
   }
   
   /* Selected day styles */
@@ -70,9 +73,15 @@
     font-weight: bold;
   }
   
-  /* Today styles */
+  /* Customized Today styles */
+  .rbc-today-customize {
+    background-color: #fdf7f9;
+    border: 2px solid #faa0a0;
+  }
+
+  /* Customized Today styles */
   .rbc-today {
-    background-color: #f0f9ff;
-    border: 2px solid #3174ad;
+    background-color: #fdf7f9;
+    border: 2px solid #d3e99f;
   }
   

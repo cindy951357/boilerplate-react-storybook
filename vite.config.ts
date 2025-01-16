@@ -23,7 +23,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      'react-big-calendar-manual': './src/libs/react-big-calendar-manual/src',
+      'react-big-calendar-manual': 'C:\\Users\\ccind\\Code_msi\\react-template\\src\\libs\\react-big-calendar-manual\\src',
     },
     extensions: ['.js', '.jsx', '.ts', '.tsx'], // 確保支持所有文件類型
   },

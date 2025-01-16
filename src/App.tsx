@@ -89,6 +89,7 @@ function App() {
         {/** Customize/Embeded version */}
         {isEmbed && (
           <div className="demo-is-manual h-full">
+            <span>Link</span>
             <CalendarCustomize
               localizer={localizer}
               events={events}

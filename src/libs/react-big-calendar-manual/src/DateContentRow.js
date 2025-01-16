@@ -86,7 +86,7 @@ class DateContentRow extends React.Component {
           )}
           <div className="rbc-row" ref={this.eventRowRef}>
             <div className="rbc-row-segment">
-              <div className="rbc-event">
+              <div className="rbc-event-customize">
                 <div className="rbc-event-content">&nbsp;</div>
               </div>
             </div>

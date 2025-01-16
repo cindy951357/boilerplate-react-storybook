@@ -11,7 +11,9 @@ class Toolbar extends React.Component {
     } = this.props
 
     return (
-      <div className="rbc-toolbar">
+      <div>
+      <div>Is installed by yarn link</div>
+      <div className="rbc-toolbar-customize">
         <span className="rbc-btn-group">
           <button
             type="button"
@@ -36,6 +38,7 @@ class Toolbar extends React.Component {
         <span className="rbc-toolbar-label">{label}</span>
 
         <span className="rbc-btn-group">{this.viewNamesGroup(messages)}</span>
+      </div>
       </div>
     )
   }
