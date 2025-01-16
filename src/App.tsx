@@ -81,7 +81,6 @@ function App() {
             className="h-full border border-gray-300 rounded-lg bg-white p-2"
           />
         )}
-        
       </div>
       <div className="flex items-center justify-center">
         <Dropdown arrowAnimation="rotate" />
